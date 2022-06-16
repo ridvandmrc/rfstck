@@ -1,0 +1,20 @@
+.input-wrapper {
+  display: flex;
+  align-items: center;
+
+  input {
+    outline: none;
+    border-radius: 8px;
+    width: 150px;
+  }
+
+  .header {
+    width: 75px;
+  }
+}
+
+.input-error {
+  input {
+    border: 2px solid red;
+  }
+}

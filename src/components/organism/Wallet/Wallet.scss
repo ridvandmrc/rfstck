@@ -1,0 +1,66 @@
+.input-label {
+  display: block;
+}
+
+.wallet-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .card-wrapper {
+    margin-top: 15px;
+  }
+
+  .mint-button {
+    width: 120px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  input {
+    height: 30px;
+  }
+}
+
+.general-info {
+  display: flex;
+  margin-bottom: 15px;
+  .info-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+
+    label {
+      margin-right: 10px;
+    }
+  }
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  color: #f35151;
+  p {
+    margin: 0;
+  }
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  margin-left: 15px;
+}
+
+.image-placeholder {
+  width: 100px;
+  height: 100px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  margin-left: 15px;
+}

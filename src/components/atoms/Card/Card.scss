@@ -1,0 +1,15 @@
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 1px gray;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow: auto;
+
+  .header {
+    display: block;
+    margin: 15px 10px;
+  }
+}

@@ -1,0 +1,24 @@
+.welcome {
+  border-radius: 9px;
+  display: flex;
+  width: 400px;
+  margin: auto;
+  height: 90vh;
+  border: 1px solid gray;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome > button {
+  height: 75px;
+  width: 75%;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid gray;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.welcome > button:hover {
+  background-color: #efefef;
+}

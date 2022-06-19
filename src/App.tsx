@@ -5,7 +5,6 @@ import { HashRouter } from "react-router-dom";
 import { MoralisProvider } from "react-moralis";
 
 function App() {
-  console.log(process.env.REACT_APP_APP_ID);
   return (
     <HashRouter>
       <MoralisProvider

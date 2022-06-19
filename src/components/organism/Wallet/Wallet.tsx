@@ -5,27 +5,53 @@ import { Input } from "../../atoms/Input/Input";
 
 import "./Wallet.scss";
 import { MetaData } from "../../molecules/MetaData/MetaData";
-import { MetaDataType } from "../../../utils";
+import {
+  MetaDataType,
+  useAccount,
+  mainMint,
+  uploadImage,
+  uploadMetaData,
+} from "../../../utils";
+import { useNavigate } from "react-router-dom";
+import { Loader } from "../../atoms/Loader/Loader";
 
 export const Wallet: FC = () => {
   const [nftName, setNftName] = useState<string>("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState();
   const [metaDatas, setMetaDatas] = useState<MetaDataType[]>();
   const [amount, setAmount] = useState<string>("");
   const [error, setError] = useState(false);
+  const [_, setGlobalAccount] = useAccount();
+  const navigate = useNavigate();
+  const [loadingMessage, setLoadingMessage] = useState("");
 
-  const mintAction = () => {
+  const mintAction = async () => {
     if (!nftName || !image) {
       setError(true);
     } else {
-      console.log("nft name: ", nftName);
-      console.log("datas: ", metaDatas);
-      console.log("Amount: ", amount);
+      setLoadingMessage("Image Uploading");
+      const imageUrl = await uploadImage(image);
+      setLoadingMessage("Image Uploaded, now uploading meta Data");
+
+      const jsonUrl = await uploadMetaData(
+        {
+          name: nftName,
+          imageUrl: imageUrl,
+          amount: amount,
+        },
+        metaDatas
+      );
+
+      setLoadingMessage("Minting NFT");
+      mainMint(jsonUrl);
+      setTimeout(() => {
+        setLoadingMessage("");
+      }, 3000);
       setError(false);
     }
   };
 
-  return (
+  return !loadingMessage ? (
     <div className="wallet-wrapper">
       <Card header="General Info">
         <div className="general-info">
@@ -44,7 +70,12 @@ export const Wallet: FC = () => {
             {!image ? (
               <div className="image-placeholder" />
             ) : (
-              <img width="100" height="100" src={image} alt="img" />
+              <img
+                width="100"
+                height="100"
+                src={URL.createObjectURL(image)}
+                alt="img"
+              />
             )}
           </div>
         </div>
@@ -64,6 +95,16 @@ export const Wallet: FC = () => {
         Mint
       </button>
 
+      <button
+        className="logout"
+        onClick={() => {
+          setGlobalAccount("");
+          navigate("/");
+        }}
+      >
+        X
+      </button>
+
       {error && (
         <div className="error">
           <p>Name section should be filled !!</p>
@@ -71,5 +112,7 @@ export const Wallet: FC = () => {
         </div>
       )}
     </div>
+  ) : (
+    <Loader message={loadingMessage} />
   );
 };

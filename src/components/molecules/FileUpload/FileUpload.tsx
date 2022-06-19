@@ -4,11 +4,11 @@ import { Input } from "../../atoms/Input/Input";
 import "./FileUpload.scss";
 
 type FileUploadType = {
-  getImage: (path: string) => void;
+  getImage: (image: any) => void;
 };
 
 export const FileUpload: FC<FileUploadType> = ({ getImage }) => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState();
   const [imageName, setImageName] = useState("");
 
   return (
@@ -21,7 +21,7 @@ export const FileUpload: FC<FileUploadType> = ({ getImage }) => {
         <input
           onChange={(e) => {
             setImageName((e.target.files?.[0] as any).name);
-            setImage(URL.createObjectURL(e.target.files?.[0] as any));
+            setImage(e.target.files?.[0] as any);
           }}
           type="file"
         />

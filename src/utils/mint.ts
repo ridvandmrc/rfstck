@@ -1,7 +1,8 @@
 import { ethers } from 'ethers'
-import nftMinter from './NFTMinter.json'
+import nftMinter from './Generated/NFTMinter.json'
+import contractAddress from './Generated/contract.json'
 
-const NFTAdress = '0x21e38a598950A893CD1cdeD2a44DA559C2d8f4fc'
+const NFTAdress = contractAddress.contractAddress
 
 export async function mainMint(url: string) {
   if ((window as any).ethereum) {
